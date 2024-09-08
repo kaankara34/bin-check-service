@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: viennalife-checkbin-service
+  jpa:
+    show-sql: true
+    database: MYSQL
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://10.184.40.31:3306/ksm?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true
+    username: ksm_user
+    password: BMTdwWN!anym98c3A6u8xEY3!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 100
+      idle-timeout: 60000
+      max-lifetime: 120000
+      connection-timeout: 10000
+
+server:
+  port: 8013
+
+host: http://localhost:${server.port}
+
+feign:
+  client:
+    config:
+      smart-message:
+        loggerLevel: full
+        connectTimeout: 60000
+        readTimeout: 60000
+
+bin:
+  service:
+    url: https://service.viennalife.com.tr/common/aegon-bin-service
+
+
