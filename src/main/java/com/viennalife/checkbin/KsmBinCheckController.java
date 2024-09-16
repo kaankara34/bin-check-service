@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 @RestController
 public class KsmBinCheckController {
 
@@ -12,11 +15,10 @@ public class KsmBinCheckController {
 	private CreditCardDetailService creditCardDetailService;
 
 	@GetMapping("/process-all")
-	public void processAllCreditCardDetails() {
+	public void processAllCreditCardDetails() throws JsonMappingException, JsonProcessingException {
 
-		CreditCartDetail cartDetail = new CreditCartDetail();
-		cartDetail.setPaymentCardNumber("4921303611023545");
-		creditCardDetailService.sendRequestToOtherService(cartDetail);
+	
+		creditCardDetailService.processAllRecords();
 
 	}
 }
